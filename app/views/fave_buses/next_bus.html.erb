@@ -1,0 +1,13 @@
+<%= link_to("Home", fave_buses_path) %>
+<br>
+<br>
+Bus: <%= @next_buses.first[:route_id] %> <br>
+Direction: <%= @next_buses.first[:direction_name]  %> <br>
+Stop ID: <%= @next_buses.first[:stop_id] %> <br>
+
+<% @next_buses.each do |next_bus| %>
+  <h1>Minutes Away: <%= next_bus[:minutes_away] %></h1>
+<% end %>
+
+
+<!-- <%#= button_to "Add Stop to Favorites", "/favorites", params:{favorite:@next_buses"} %> -->

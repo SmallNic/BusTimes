@@ -1,0 +1,5 @@
+<%= form_tag '/bus_search' do %>
+  <%= label_tag(:q, "Bus Stop ID") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>

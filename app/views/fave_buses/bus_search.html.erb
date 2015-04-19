@@ -1,0 +1,16 @@
+<!--
+Chosen:
+<%#= @chosen_bus_stops.count %><br>
+<%#= @chosen_bus_stops.uniq.count %><br>
+<%#= @bus_data["Stops"].count %>
+<br>
+<%#= @chosen_bus_stops.uniq.each do |stop| %>
+  <%#= stop %><br>
+<%# end %> -->
+
+<h2>Routes for <%= @chosen_bus %>:</h2>
+<%= form_tag '/next_bus' do %>
+  <%= hidden_field_tag(:bus, @chosen_bus) %>
+  <%= select_tag(:q, options_for_select(@chosen_bus_stops.uniq)) %>
+  <%= submit_tag("Search") %>
+<% end %>
