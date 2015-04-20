@@ -1,5 +1,22 @@
-<%= form_tag '/bus_search' do %>
-  <%= label_tag(:q, "Bus Stop ID") %>
+<%= form_tag '/get_stops' do %>
+  <%= label_tag(:q, "Search by Bus Name") %>
   <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Submit") %>
+<% end %>
+
+<% if @fave_bus_routes.count > 0 %>
+  <h1>Favorite Bus Routes </h1>
+  <% @fave_bus_routes.each do |next_buses_on_route| %>
+    <div class="fave_bus">
+      Bus: <%= next_buses_on_route.first[:route_id] %> <br>
+      Bus Stop: <%= next_buses_on_route.first[:stop_name]  %> <br>
+      Direction: <%= next_buses_on_route.first[:direction_name]  %> <br>
+      <% next_buses_on_route.each do |next_bus| %>
+        <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
+      <% end %>
+      <%= button_to "Remove from Favorites", "/delete_favorite", params:{route_id:next_buses_on_route.first[:route_id], stop_id:next_buses_on_route.first[:stop_id]} %>
+    </div>
+  <% end %>
+<% else %>
+  <h1>No Favorite Bus Routes </h1>
 <% end %>

@@ -1,0 +1,13 @@
+<%= link_to("Home", fave_buses_path) %>
+
+<% if @stops_for_chosen_bus.count > 0 %>
+  <h2>Stops for <%= @chosen_bus %>:</h2>
+  <%= form_tag '/get_next_bus' do %>
+    <%= hidden_field_tag(:bus, @chosen_bus) %>
+    <%= select_tag(:q, options_for_select(@stops_for_chosen_bus)) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+<% else %>
+  <h2>Bus name yielded no results </h2>
+
+<% end %>
