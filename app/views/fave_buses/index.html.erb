@@ -13,7 +13,7 @@
         Bus Stop: <%= next_buses_on_route.first[:stop_name]  %> <br>
         Direction: <%= next_buses_on_route.first[:direction_name]  %> <br>
         <% next_buses_on_route.each do |next_bus| %>
-          <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
+          <h3>Minutes Away: <%= next_bus[:minutes_away] %></h3>
         <% end %>
         <%= button_to "Remove from Favorites", "/delete_favorite", params:{route_id:next_buses_on_route.first[:route_id], stop_id:next_buses_on_route.first[:stop_id]} %>
       </div>
@@ -22,5 +22,3 @@
 <% else %>
   <h1>No Favorite Bus Routes </h1>
 <% end %>
-
-<div class="fb-comments" data-href="https://shrouded-retreat-6319.herokuapp.com/" data-width="600" data-numposts="7" data-colorscheme="light"></div>
