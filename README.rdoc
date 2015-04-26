@@ -2,6 +2,7 @@ BusTimes App
 
 - Ruby version 2.2.0
 - Rails version 4.2.1
+- User Stories: https://trello.com/b/SU6RP2CC/project-bustimes
 
 This Bus Times application allows a user to search for the next times for a bus, add bus routes to a list of favorites and delete buses from a list of favorites.
 
