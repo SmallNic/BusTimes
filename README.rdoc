@@ -1,28 +1,12 @@
-== README
+BusTimes App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Ruby version 2.2.0
+- Rails version 4.2.1
 
-Things you may want to cover:
+This Bus Times application allows a user to search for the next times for a bus, add bus routes to a list of favorites and delete buses from a list of favorites.
 
-* Ruby version
+When starting the application, the user has the following options:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- Search for a particular bus
+- View the buses on his/her favorites list
+- Delete buses from his/her favorites list
