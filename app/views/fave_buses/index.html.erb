@@ -1,3 +1,5 @@
+<h1>Current temperature in DC is <span style="color:blue"><%= @temp %></span> </h1>
+
 <%= form_tag '/get_stops' do %>
   <%= label_tag(:q, "Search by Bus Name") %>
   <%= text_field_tag(:q) %>

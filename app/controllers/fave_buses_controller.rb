@@ -48,6 +48,14 @@ class FaveBusesController < ApplicationController
   end
 
   def index
+    zipcodeLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/geolookup/q/20011.json"
+    weatherData = HTTParty.get(zipcodeLookupURL)
+    state = weatherData["location"]["state"]
+    city = weatherData["location"]["city"]
+    cityLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/conditions/q/" + state + "/" + city + ".json"
+    cityData = HTTParty.get(cityLookupURL)
+    @temp = cityData["current_observation"]["temp_f"]
+
     @fave_bus_routes = []
     FaveBus.all.each do |fave_bus|
       @fave_bus_routes << get_predictions(fave_bus.stop_id, fave_bus.route_id).first
