@@ -43,5 +43,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def get_list_of_stops_for_bus(chosen_bus)
+    all_bus_data = HTTParty.get("https://api.wmata.com/Bus.svc/json/jStops?Lat&Lon&Radius&api_key=ff3f1616de1b4f49ab93a499b1bd4bb6")
+
+    stops_for_chosen_bus = []
+    all_bus_data["Stops"].each do |stop|
+      stop["Routes"].each do |route|
+        if route == chosen_bus
+          stops_for_chosen_bus << stop["Name"]
+        end
+      end
+    end
+
+    return stops_for_chosen_bus.uniq
+  end
 
 end
