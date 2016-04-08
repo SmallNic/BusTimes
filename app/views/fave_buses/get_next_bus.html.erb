@@ -1,36 +1,38 @@
-<%= link_to("Home", fave_buses_path) %>
-<br>
-<br>
+<div class="nav-bar">
+<%= link_to "Go Home", fave_buses_path, class:"home-link" %>
+</div><!-- nav-bar -->
 
-<div class="fave_bus">
-  <% if @next_buses_on_route.count > 0 %>
+<div class="container">
+  <div class="fave_bus">
+    <% if @next_buses_on_route.count > 0 %>
     Bus: <%= @next_buses_on_route.first[:route_id] %> <br>
     Bus Stop: <%= @next_buses_on_route.first[:stop_name]  %> <br>
     Stop ID: <%= @next_buses_on_route.first[:stop_id] %> <br>
     Direction: <%= @next_buses_on_route.first[:direction_name]  %> <br>
 
     <% @next_buses_on_route.each do |next_bus| %>
-      <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
+    <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
     <% end %>
 
     <%= button_to "Add Route to Favorites", "/add_favorite", params:{route_id:@next_buses_on_route.first[:route_id], direction_name:@next_buses_on_route.first[:direction_name], stop_id:@next_buses_on_route.first[:stop_id], stop_name:@next_buses_on_route.first[:stop_name] } %>
-  <% else %>
+    <% else %>
     <h2> No nearby buses for your request bus. </h2>
-  <% end %>
-</div>
-
-<div class="fave_bus">
-  <% if @other_buses_on_route.count > 0 %>
-    <h2>Other Buses on this Route</h2>
-    Bus: <%= @other_buses_on_route.first[:route_id] %> <br>
-    Bus Stop: <%= @other_buses_on_route.first[:stop_name]  %> <br>
-    Stop ID: <%= @other_buses_on_route.first[:stop_id] %> <br>
-    Direction: <%= @other_buses_on_route.first[:direction_name]  %> <br>
-
-    <% @other_buses_on_route.each do |next_bus| %>
-      <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
     <% end %>
+  </div>
 
-    <%= button_to "Add Route to Favorites", "/add_favorite", params:{route_id:@other_buses_on_route.first[:route_id], direction_name:@other_buses_on_route.first[:direction_name], stop_id:@other_buses_on_route.first[:stop_id], stop_name:@other_buses_on_route.first[:stop_name] } %>
-  <% end %>
-</div>
+  <div class="fave_bus">
+    <% if @other_buses_on_route.count > 0 %>
+      <h2>Other Buses on this Route</h2>
+      Bus: <%= @other_buses_on_route.first[:route_id] %> <br>
+      Bus Stop: <%= @other_buses_on_route.first[:stop_name]  %> <br>
+      Stop ID: <%= @other_buses_on_route.first[:stop_id] %> <br>
+      Direction: <%= @other_buses_on_route.first[:direction_name]  %> <br>
+
+      <% @other_buses_on_route.each do |next_bus| %>
+      <h2>Minutes Away: <%= next_bus[:minutes_away] %></h2>
+      <% end %>
+
+      <%= button_to "Add Route to Favorites", "/add_favorite", params:{route_id:@other_buses_on_route.first[:route_id], direction_name:@other_buses_on_route.first[:direction_name], stop_id:@other_buses_on_route.first[:stop_id], stop_name:@other_buses_on_route.first[:stop_name] } %>
+    <% end %>
+  </div>
+</div><!-- container -->

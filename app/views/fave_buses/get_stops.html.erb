@@ -1,4 +1,8 @@
-<%= link_to("Home", fave_buses_path) %>
+<div class="nav-bar">
+<%= link_to "Go Home", fave_buses_path, class:"home-link" %>
+</div><!-- nav-bar -->
+<div class="container">
+
 
 <% if @stops_for_chosen_bus.count > 0 %>
   <h2>Stops for <%= @chosen_bus %>:</h2>
@@ -11,3 +15,5 @@
   <h2>Bus name yielded no results </h2>
 
 <% end %>
+
+</div>
