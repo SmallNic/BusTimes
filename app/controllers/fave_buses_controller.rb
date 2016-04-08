@@ -55,7 +55,7 @@ class FaveBusesController < ApplicationController
   private
 
   def set_temp
-    weatherInfo = lookupWeather(nil)
+    weatherInfo = lookupWeather()
     @temp = weatherInfo[:temp]
     @state = weatherInfo[:state]
     @city = weatherInfo[:city]

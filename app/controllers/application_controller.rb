@@ -3,17 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def lookupWeather(user_zip)
-    # zip = user_zip || "20011"
-    # zipcodeLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/geolookup/q/"+zip+".json"
-    # weatherData = HTTParty.get(zipcodeLookupURL)
-    # state = weatherData["location"]["state"]
-    # city = weatherData["location"]["city"]
+  def lookupWeather
     state = "DC"
     city = "Washington"
     cityLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/conditions/q/" + state + "/" + city + ".json"
     cityData = HTTParty.get(cityLookupURL)
-    return {"state":state, "city":city, "temp":cityData["current_observation"]["temp_f"]}
+    weatherInfo = {state:state, city:city, temp:cityData["current_observation"]["temp_f"]}
+    return weatherInfo
   end
 
   def get_predictions(stop_id, bus_name)
