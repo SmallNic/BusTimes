@@ -20,7 +20,7 @@ class FaveBusesController < ApplicationController
   def index
     @fave_bus_routes = []
     FaveBus.all.each do |fave_bus|
-      @fave_bus_routes << get_predictions(fave_bus.stop_id, fave_bus.route_id).first
+      @fave_bus_routes << {"predictions":get_predictions(fave_bus.stop_id, fave_bus.route_id).first, "id":fave_bus.id}
     end
   end
 
@@ -45,19 +45,21 @@ class FaveBusesController < ApplicationController
     redirect_to ('/')
   end
 
-  def delete_favorite
-    FaveBus.all.each do |fave_bus|
-      if fave_bus.stop_id == params[:stop_id].to_i && fave_bus.route_id == params[:route_id]
-        fave_bus.destroy
-      end
-    end
-    redirect_to ('/')
+  def destroy
+    binding.pry
+    fave_bus = FaveBus.find(params[:id])
+    fave_bus.destroy
+    redirect_to root_path
   end
 
   private
 
   def set_temp
-    @temp = lookupWeather(nil)
+    weatherInfo = lookupWeather(nil)
+    @temp = weatherInfo[:temp]
+    @state = weatherInfo[:state]
+    @city = weatherInfo[:city]
+
   end
 
 

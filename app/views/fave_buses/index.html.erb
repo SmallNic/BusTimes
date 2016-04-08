@@ -12,15 +12,18 @@
   <h1>Favorite Bus Routes </h1>
   </div>
   <% @fave_bus_routes.each do |next_buses_on_route| %>
-  <% if next_buses_on_route.count > 0 %>
+  <% if next_buses_on_route[:predictions].count > 0 %>
     <div class="fave_bus">
-      Bus: <%= next_buses_on_route.first[:route_id] %> <br>
-      Bus Stop: <%= next_buses_on_route.first[:stop_name]  %> <br>
-      Direction: <%= next_buses_on_route.first[:direction_name]  %> <br>
-      <% next_buses_on_route.each do |next_bus| %>
+      <%= link_to 'X', fave_bus_path(id: next_buses_on_route[:id]), method: :delete, data: {confirm: "Are you sure?"}, class:"delete-fave" %>
+
+      <div class="route-id"><%= next_buses_on_route[:predictions].first[:route_id] %> </div>
+      Bus Stop: <%= next_buses_on_route[:predictions].first[:stop_name]  %> <br>
+      Direction: <%= next_buses_on_route[:predictions].first[:direction_name]  %> <br>
+      <% next_buses_on_route[:predictions].each do |next_bus| %>
       <h3>Minutes Away: <%= next_bus[:minutes_away] %></h3>
       <% end %>
-      <%= button_to "Remove from Favorites", "/delete_favorite", params:{route_id:next_buses_on_route.first[:route_id], stop_id:next_buses_on_route.first[:stop_id]} %>
+      <%#= link_to "X", method: :destroy, class:"delete-fave" %>
+      <%#= button_to "X", "/delete_favorite", params:{route_id:next_buses_on_route.first[:route_id], stop_id:next_buses_on_route.first[:stop_id]}, class:"delete-fave" %>
     </div>
     <% end %>
   <% end %>

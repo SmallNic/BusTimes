@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'figaro'
 gem 'pry'
 gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

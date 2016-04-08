@@ -1,0 +1,73 @@
+$(document).ready(function(){
+  console.log("running")
+
+  var latitude;
+  var longitude;
+  var location;
+
+  $(".weather").on("click", function(){
+
+    navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options); //Get user's position, i.e., lat, long, and location
+
+  })
+
+  function geo_success(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log("latitude:", latitude);
+    console.log("longitude:", longitude);
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=" + "<%= ENV['google_api_key'] %>";
+    getLocation(url);
+  }
+
+  function geo_error() {
+    console.log("Sorry, no position available.");
+  }
+
+  var geo_options = {
+    enableHighAccuracy: true,
+    maximumAge        : 30000,
+    timeout           : 27000
+  };
+
+  //Get the user's city, state and country using latitude and longitude and Google's Reverse Geocoding
+  function getLocation(url){
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "json"
+    }).done(function(response){
+      console.log("response", response);
+      var city = response.results[0].address_components[3].long_name;
+      var state = response.results[0].address_components[4].short_name;
+      var zip = response.results[0].address_components[6].long_name;
+      console.log(zip);
+      updateTemp(city, state)
+
+    }).fail(function(){
+      zip = null;
+      console.log("failed to get location");
+    })
+  }
+
+
+  function updateTemp(city, state){
+
+    url = "http://api.wunderground.com/api/e00b469c839d4b27/conditions/q/" + state + "/" + city + ".json"
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "json"
+    }).done(function(response){
+      console.log("response", response);
+      temp = response.current_observation.temp_f
+      $("#current-temp").text(temp)
+      $(".location-display").text("("+city+", "+ state+")")
+    }).fail(function(){
+      zip = null;
+      console.log("failed to get location");
+    })
+  }
+
+
+})

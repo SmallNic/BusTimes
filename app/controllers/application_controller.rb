@@ -4,14 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def lookupWeather(user_zip)
-    zip = user_zip || "20011"
-    zipcodeLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/geolookup/q/"+zip+".json"
-    weatherData = HTTParty.get(zipcodeLookupURL)
-    state = weatherData["location"]["state"]
-    city = weatherData["location"]["city"]
+    # zip = user_zip || "20011"
+    # zipcodeLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/geolookup/q/"+zip+".json"
+    # weatherData = HTTParty.get(zipcodeLookupURL)
+    # state = weatherData["location"]["state"]
+    # city = weatherData["location"]["city"]
+    state = "DC"
+    city = "Washington"
     cityLookupURL = "http://api.wunderground.com/api/e00b469c839d4b27/conditions/q/" + state + "/" + city + ".json"
     cityData = HTTParty.get(cityLookupURL)
-    return cityData["current_observation"]["temp_f"]
+    return {"state":state, "city":city, "temp":cityData["current_observation"]["temp_f"]}
   end
 
   def get_predictions(stop_id, bus_name)

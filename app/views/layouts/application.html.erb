@@ -14,8 +14,13 @@
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div class="weather">
-    <p>Current temperature in DC is <span style="color:blue"><%= @temp %></span> </p>
+  <div class="weather"  data-toggle="tooltip" data-placement="top" title="Click anywhere in top bar to get local weather.">
+    <p class="temp-display">
+      Current temperature in DC is <span id="current-temp"><%= @temp %></span>
+    </p>
+    <p class="location-display">
+      (<%= "#{@city} #{@state}"%>)
+    </p>
   </div>
 
   <%= yield %>
