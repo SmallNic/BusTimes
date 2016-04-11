@@ -7,14 +7,14 @@ body *{
 }
 
 .weather{
-  height:100px;
+  height:150px;
   padding-top: 10px;
   text-align: center;
   cursor:pointer;
 }
 
 .temp-display{
-  font-size:2em;
+  font-size:3em;
 }
 
 #current-temp{
@@ -22,7 +22,7 @@ body *{
 }
 
 .location-display{
-  font-size: 1.5em;
+  font-size: 2.5em;
   font-style: italic;
 }
 
@@ -92,13 +92,13 @@ body *{
   color:inherit;
 }
 
-@media (max-width: 991px) {
+/*@media (max-width: 991px) {
   .fave_bus {
     width: 60%;
   }
-}
+}*/
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .fave_bus {
     font-size: 2em;
     width: 90%;

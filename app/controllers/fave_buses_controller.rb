@@ -42,7 +42,6 @@ class FaveBusesController < ApplicationController
     @temp = weatherInfo[:temp]
     @state = weatherInfo[:state]
     @city = weatherInfo[:city]
-
   end
 
 
